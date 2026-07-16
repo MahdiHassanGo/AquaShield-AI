@@ -20,5 +20,5 @@ if (!parsed.success) {
 
 export const env = parsed.data;
 export const allowedOrigins = env.FRONTEND_URL.split(",")
-  .map((origin) => origin.trim())
+  .map((origin) => origin.trim().replace(/\/$/, ""))
   .filter(Boolean);
