@@ -1,0 +1,32 @@
+{
+  "model_name": "efficientnet_b0",
+  "class_names": [
+    "Healthy",
+    "BG",
+    "WSSV",
+    "BG_WSSV"
+  ],
+  "class_to_idx": {
+    "Healthy": 0,
+    "BG": 1,
+    "WSSV": 2,
+    "BG_WSSV": 3
+  },
+  "img_size": 224,
+  "normalize_mean": [
+    0.485,
+    0.456,
+    0.406
+  ],
+  "normalize_std": [
+    0.229,
+    0.224,
+    0.225
+  ],
+  "fold": 3,
+  "validation_fold": 4,
+  "best_epoch": 20,
+  "best_validation_macro_f1": 0.6782089059840594,
+  "timm_version": "1.0.26",
+  "torch_version": "2.10.0+cu128"
+}

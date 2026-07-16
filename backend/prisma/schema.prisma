@@ -1,0 +1,46 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  USER
+  ADMIN
+}
+
+model User {
+  id           String       @id @default(uuid())
+  name         String
+  email        String       @unique
+  passwordHash String
+  role         UserRole     @default(USER)
+  predictions  Prediction[]
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  @@index([createdAt])
+}
+
+model Prediction {
+  id               String   @id @default(uuid())
+  originalFileName String
+  mimeType         String
+  fileSize         Int
+  predictedClass   String
+  confidence       Float
+  probabilities    Json
+  modelName        String
+  modelVersion     String
+  ensembleSize     Int
+  lowConfidence    Boolean  @default(false)
+  userId           String
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt        DateTime @default(now())
+
+  @@index([userId, createdAt])
+  @@index([predictedClass])
+}

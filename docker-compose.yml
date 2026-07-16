@@ -1,0 +1,62 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: shrimp_disease
+    ports:
+      - "5432:5432"
+    volumes:
+      - shrimp_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d shrimp_disease"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  ml-service:
+    build: ./ml-service
+    environment:
+      MODEL_DIR: models
+      MODEL_PATTERN: best_efficientnet_b0_fold*.pth
+      MAX_IMAGE_BYTES: 8388608
+      LOW_CONFIDENCE_THRESHOLD: 0.60
+      ALLOWED_ORIGINS: http://localhost:3000,http://localhost:5000
+    volumes:
+      - ./ml-service/models:/app/models:ro
+    ports:
+      - "8000:8000"
+
+  backend:
+    build: ./backend
+    depends_on:
+      postgres:
+        condition: service_healthy
+      ml-service:
+        condition: service_started
+    environment:
+      NODE_ENV: production
+      PORT: 5000
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/shrimp_disease?schema=public
+      JWT_SECRET: change-this-compose-secret-before-real-deployment-123456789
+      JWT_EXPIRES_IN: 7d
+      FRONTEND_URL: http://localhost:3000
+      ML_SERVICE_URL: http://ml-service:8000
+      MAX_IMAGE_BYTES: 8388608
+    command: sh -c "npx prisma migrate deploy && node dist/server.js"
+    ports:
+      - "5000:5000"
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:5000/api
+    depends_on:
+      - backend
+    ports:
+      - "3000:3000"
+
+volumes:
+  shrimp_postgres_data:

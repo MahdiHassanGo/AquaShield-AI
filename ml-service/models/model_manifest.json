@@ -1,0 +1,59 @@
+{
+  "project": "ShrimpDiseaseImageBD classifier",
+  "model_name": "efficientnet_b0",
+  "class_names": [
+    "Healthy",
+    "BG",
+    "WSSV",
+    "BG_WSSV"
+  ],
+  "class_to_idx": {
+    "Healthy": 0,
+    "BG": 1,
+    "WSSV": 2,
+    "BG_WSSV": 3
+  },
+  "img_size": 224,
+  "normalize_mean": [
+    0.485,
+    0.456,
+    0.406
+  ],
+  "normalize_std": [
+    0.229,
+    0.224,
+    0.225
+  ],
+  "ensemble_strategy": "mean_softmax_probability",
+  "checkpoint_files": [
+    "best_efficientnet_b0_fold0.pth",
+    "best_efficientnet_b0_fold1.pth",
+    "best_efficientnet_b0_fold2.pth",
+    "best_efficientnet_b0_fold3.pth",
+    "best_efficientnet_b0_fold4.pth"
+  ],
+  "number_of_models": 5,
+  "cross_validation_summary": {
+    "test_accuracy": {
+      "mean": 0.642356272260429,
+      "std": 0.027081193292814887
+    },
+    "test_balanced_accuracy": {
+      "mean": 0.6147416633662223,
+      "std": 0.02625460535398593
+    },
+    "test_precision_macro": {
+      "mean": 0.6213671581407048,
+      "std": 0.023481369532544087
+    },
+    "test_recall_macro": {
+      "mean": 0.6147416633662223,
+      "std": 0.02625460535398593
+    },
+    "test_f1_macro": {
+      "mean": 0.6126647034541314,
+      "std": 0.024488410330353687
+    }
+  },
+  "warning": "Research screening prototype only. Predictions must not replace laboratory confirmation or aquatic animal health expertise."
+}

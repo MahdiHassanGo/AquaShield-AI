@@ -1,0 +1,22 @@
+# Node
+node_modules/
+dist/
+.next/
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Model files are large; keep locally or in release/object storage
+ml-service/models/*.pth
+ml-service/models/*.pt
+
+# OS
+.DS_Store
