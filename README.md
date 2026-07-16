@@ -283,7 +283,6 @@ Commit the generated `backend/prisma/migrations/` folder. Future Docker deployme
 ```env
 NODE_ENV=development
 PORT=5000
-DATABASE_URL=postgresql://postgres:postgres@localhost:5432/shrimp_disease?schema=public
 JWT_SECRET=replace-with-a-long-random-secret-at-least-32-characters
 JWT_EXPIRES_IN=7d
 FRONTEND_URL=http://localhost:3000
