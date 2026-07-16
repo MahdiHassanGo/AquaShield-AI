@@ -14,9 +14,9 @@ __pycache__/
 .env.*
 !.env.example
 
-# Model files are large; keep locally or in release/object storage
-ml-service/models/*.pth
-ml-service/models/*.pt
+# Model files are large; keep locally or in release/object storage (uncomment for production object storage)
+# ml-service/models/*.pth
+# ml-service/models/*.pt
 
 # OS
 .DS_Store
