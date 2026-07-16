@@ -16,7 +16,7 @@ from PIL import Image, UnidentifiedImageError
 
 MODEL_DIR = Path(os.getenv("MODEL_DIR", "models"))
 MODEL_PATTERN = os.getenv("MODEL_PATTERN", "best_efficientnet_b0_fold*.pth")
-MAX_IMAGE_BYTES = int(os.getenv("MAX_IMAGE_BYTES", str(8 * 1024 * 1024)))
+MAX_IMAGE_BYTES = int(os.getenv("MAX_IMAGE_BYTES", str(4 * 1024 * 1024)))
 LOW_CONFIDENCE_THRESHOLD = float(os.getenv("LOW_CONFIDENCE_THRESHOLD", "0.60"))
 ALLOWED_MIME_TYPES = {"image/jpeg", "image/png", "image/webp"}
 

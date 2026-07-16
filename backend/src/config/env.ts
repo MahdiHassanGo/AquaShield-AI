@@ -9,7 +9,7 @@ const envSchema = z.object({
   JWT_EXPIRES_IN: z.string().default("7d"),
   FRONTEND_URL: z.string().default("http://localhost:3000"),
   ML_SERVICE_URL: z.string().url().default("http://localhost:8000"),
-  MAX_IMAGE_BYTES: z.coerce.number().int().positive().default(8 * 1024 * 1024)
+  MAX_IMAGE_BYTES: z.coerce.number().int().positive().default(4 * 1024 * 1024)
 });
 
 const parsed = envSchema.safeParse(process.env);
