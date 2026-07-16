@@ -27,7 +27,7 @@ export default function HomePage() {
           <div className="architecture-card glass-panel">
             <div style={{ padding: "16px 20px 8px 20px" }}>
               <p className="eyebrow" style={{ margin: 0 }}>System Pipeline</p>
-              <h3 style={{ margin: "4px 0 0 0", fontSize: "1.15rem", color: "#fff" }}>Diagnostics Workflow</h3>
+             
             </div>
             <div>
               <span>01</span>

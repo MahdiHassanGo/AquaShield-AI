@@ -11,6 +11,22 @@ The system uses a **Next.js frontend**, **Express.js TypeScript API**, **Postgre
 
 > Important: This is an experimental screening system. It must not be presented as a replacement for laboratory confirmation or professional aquatic animal health assessment.
 
+## User Interface & Diagnostics Panel
+
+Here are the interface screens of the modernized **AquaShield AI** application:
+
+### 1. Landing Page
+![Landing Page](images/landing_page.png)
+
+### 2. Diagnostics Panel (Specimen Scan & Inference)
+![Diagnostics Panel](images/diagnostics_panel.png)
+
+### 3. Diagnostic Archive Logs
+![Prediction History Logs](images/prediction_history.png)
+
+### 4. Secure Access Portal
+![Secure Portal](images/secure_portal.png)
+
 ## Project structure
 
 ```text
