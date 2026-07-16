@@ -14,11 +14,38 @@ app.use(helmet());
 app.use(
   cors({
     origin(origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
+      if (!origin) {
         callback(null, true);
         return;
       }
-      callback(new Error("Origin is not allowed by CORS."));
+      
+      // Allow local development
+      if (origin.includes("localhost") || origin.includes("127.0.0.1")) {
+        callback(null, true);
+        return;
+      }
+
+      // Clean trailing slash
+      const cleanOrigin = origin.trim().replace(/\/$/, "");
+
+      // Allow if present in allowedOrigins environment variable list
+      if (allowedOrigins.includes(cleanOrigin)) {
+        callback(null, true);
+        return;
+      }
+
+      // Auto-allow all Vercel deployments (production & preview subdomains)
+      try {
+        const parsedUrl = new URL(origin);
+        if (parsedUrl.hostname.endsWith(".vercel.app")) {
+          callback(null, true);
+          return;
+        }
+      } catch (err) {
+        // Invalid URL origin format
+      }
+
+      callback(new Error(`Origin ${origin} is not allowed by CORS.`));
     },
     credentials: false
   })
