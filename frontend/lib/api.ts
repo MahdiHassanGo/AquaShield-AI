@@ -1,6 +1,11 @@
 import { clearSession, getToken } from "./auth";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000/api";
+let API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5000/api";
+
+// Auto-append '/api' if omitted in deployment environment variables
+if (API_URL && !API_URL.endsWith("/api") && !API_URL.endsWith("/api/")) {
+  API_URL = API_URL.replace(/\/$/, "") + "/api";
+}
 
 type ApiOptions = RequestInit & {
   authenticated?: boolean;
