@@ -1,4 +1,9 @@
-# Shrimp Disease AI Platform
+# AquaShield AI — Shrimp Disease Classification
+
+> **Live Demo**: [https://aqua-shield-ai.vercel.app/](https://aqua-shield-ai.vercel.app/)
+>
+> * **Backend API**: `https://aquashield-ai-1.onrender.com`
+> * **FastAPI ML Inference**: `https://aquashield-ai-rcgc.onrender.com`
 
 A complete research-prototype application for classifying shrimp images into:
 
